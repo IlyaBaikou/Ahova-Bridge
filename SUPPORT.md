@@ -1,6 +1,6 @@
 # Support boundary
 
-Alven Bridge supports the published container, Compose file, protocol versions, and capability matrix.
+Ahova Bridge supports the published container, Compose file, protocol versions, and capability matrix.
 It does not administer a household's router, NAS operating system, Ollama models, LM Studio models,
 Docker host, or third-party backups.
 

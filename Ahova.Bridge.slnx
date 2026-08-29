@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Ahova.Bridge/Ahova.Bridge.csproj" />
+  <Project Path="tests/Ahova.Bridge.Tests/Ahova.Bridge.Tests.csproj" />
+</Solution>

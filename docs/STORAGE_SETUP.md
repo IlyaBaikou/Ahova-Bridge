@@ -1,11 +1,11 @@
 # Connect family-owned storage
 
-Alven Bridge can store family originals in one selected destination: a mounted folder/NAS, WebDAV, or
-S3-compatible object storage. Alven keeps structured records, permissions, links, hashes, and safe opaque
+Ahova Bridge can store family originals in one selected destination: a mounted folder/NAS, WebDAV, or
+S3-compatible object storage. Ahova keeps structured records, permissions, links, hashes, and safe opaque
 locators; Bridge moves file bytes without exposing the storage credential to the phone.
 
 The current preview relay accepts files up to 5 MB each. Selecting Bridge storage affects new originals.
-Existing Alven files remain where they are until an Owner starts and confirms an explicit migration.
+Existing Ahova files remain where they are until an Owner starts and confirms an explicit migration.
 
 ## Before choosing a provider
 
@@ -21,30 +21,30 @@ This option works with a folder on the Docker host, an external disk, or an SMB/
 by the host operating system.
 
 1. Mount the disk or NAS share on the host and verify it is writable by Docker.
-2. Open the Bridge installation `.env` and set the host path:
-
-   ```dotenv
-   BRIDGE_STORAGE_HOST_PATH=/mnt/family/alven
-   BRIDGE_STORAGE_READ_ONLY=false
-   ```
-
-   On Docker Desktop for macOS or Windows, ensure the chosen folder is shared with Docker.
-
-3. Recreate the container so the new mount is applied:
+2. From the Bridge installation folder, choose it with the helper:
 
    ```bash
-   docker compose up -d
+   ./ahova-bridge storage /mnt/family/ahova
    ```
 
-4. Open [http://127.0.0.1:7433](http://127.0.0.1:7433), enable **Use my family storage**, and choose
+   On Windows:
+
+   ```powershell
+   .\ahova-bridge.ps1 storage "D:\Family\Ahova"
+   ```
+
+   The helper validates or creates the folder, updates the private local setting, and safely recreates
+   Bridge. On Docker Desktop, ensure the chosen folder is shared with Docker if prompted.
+
+3. Open [http://127.0.0.1:7433](http://127.0.0.1:7433), enable **Use my family storage**, and choose
    **Mounted folder / NAS**.
-5. Choose **Save and check**. A writable destination receives `.alven-bridge-mount-id`.
+4. Choose **Save and test**. A writable destination receives `.ahova-bridge-mount-id`.
 
 Do not copy, edit, or delete the mount identity marker. It makes Bridge fail closed if a NAS mount
 disappears and the host path unexpectedly points at a different disk. Mount the correct storage again
 instead of recreating the marker manually.
 
-Set `BRIDGE_STORAGE_READ_ONLY=true` only for an existing archive that Alven should read without adding or
+Set `BRIDGE_STORAGE_READ_ONLY=true` only for an existing archive that Ahova should read without adding or
 removing originals. Read-only storage cannot be selected as a writable destination for new files.
 
 ## WebDAV — Nextcloud or Synology
@@ -57,7 +57,7 @@ removing originals. Read-only storage cannot be selected as a writable destinati
    - the dedicated username;
    - the dedicated password or app password.
 
-4. Choose **Save and check** and wait for the storage readiness card.
+4. Choose **Save and test** and wait for the storage readiness card.
 
 Bridge creates only the folders needed beneath the configured destination. Leaving the password field
 empty during a later edit keeps the saved secret. The wizard never returns the saved password.
@@ -75,25 +75,25 @@ This option supports MinIO, Synology-compatible object storage, AWS S3, and comp
 
    - **Storage endpoint:** the service endpoint, including HTTPS and any required port;
    - **S3 bucket:** the exact bucket name;
-   - **S3 folder prefix:** a dedicated prefix such as `alven`;
+   - **S3 folder prefix:** a dedicated prefix such as `ahova`;
    - **S3 access key** and **S3 secret key:** the restricted credential;
    - **S3 region:** the service's signing region, often `us-east-1` for local MinIO.
 
-4. Choose **Save and check** and wait for the storage readiness card.
+4. Choose **Save and test** and wait for the storage readiness card.
 
 Bridge uses SigV4 path-style requests so self-hosted endpoints work without wildcard DNS. Leaving a key
 field empty during a later edit keeps the stored value. Never place bucket credentials in `.env`, logs,
 screenshots, diagnostics, or support messages.
 
-## Pair and select storage in Alven
+## Pair and select storage in Ahova
 
 Once the storage card is healthy:
 
-1. In Alven, open **More → Files & Smart Actions → Alven Bridge**.
+1. In Ahova, open **More → Files & Smart Actions → Ahova Bridge**.
 2. Create a one-time code and pair the machine in the local wizard.
 3. Return to **Files & Smart Actions** and confirm **Personal storage** is available.
 4. Select it as the destination for new originals.
-5. If existing Alven files should move, start the explicit migration, review the source and target, and
+5. If existing Ahova files should move, start the explicit migration, review the source and target, and
    wait for copy-and-verify before cutover.
 
 Pairing alone does not silently change the active family storage. Cancelling a code or closing the wizard
@@ -103,13 +103,13 @@ connected.
 ## Verify the full path
 
 1. Confirm the local wizard reports storage **Ready**.
-2. Run `./alven-bridge doctor` or `.\alven-bridge.ps1 doctor`.
-3. Save one small non-sensitive test file from Alven.
-4. Confirm it appears beneath the chosen folder/prefix and remains openable through Alven.
-5. Remove the test file through Alven and confirm the expected Trash/retention behavior rather than
-   deleting provider data behind Alven's back.
+2. Run `./ahova-bridge doctor` or `.\ahova-bridge.ps1 doctor`.
+3. Save one small non-sensitive test file from Ahova.
+4. Confirm it appears beneath the chosen folder/prefix and remains openable through Ahova.
+5. Remove the test file through Ahova and confirm the expected Trash/retention behavior rather than
+   deleting provider data behind Ahova's back.
 
-Do not use provider-side rename, overwrite, or deletion as the normal Alven workflow. Alven verifies
+Do not use provider-side rename, overwrite, or deletion as the normal Ahova workflow. Ahova verifies
 provider identity, revision, size, and hash; unexpected provider changes correctly surface as a recovery
 state.
 
@@ -120,7 +120,7 @@ back up the small `bridge-state` volume because it contains the installation cre
 job receipts:
 
 ```bash
-./alven-bridge backup
+./ahova-bridge backup
 ```
 
 Store that archive encrypted. It is not safe to send to support and does not contain the mounted family
@@ -128,7 +128,7 @@ files. See [Operations and recovery](OPERATIONS.md) before restoring or moving a
 
 ## Troubleshooting
 
-- **Mounted storage unavailable:** verify the host mount and `.alven-bridge-mount-id`; never recreate the
+- **Mounted storage unavailable:** verify the host mount and `.ahova-bridge-mount-id`; never recreate the
   marker manually.
 - **WebDAV unavailable:** verify HTTPS, certificate trust, exact folder URL, app password, and account
   permissions.
@@ -136,7 +136,7 @@ files. See [Operations and recovery](OPERATIONS.md) before restoring or moving a
   restricted key policy.
 - **New files wait on the phone:** confirm Personal storage is active and writable, then restore Bridge
   readiness. Existing records are not deleted when storage is unavailable.
-- **Migration pauses:** restore both source and target health, then use Alven's resume or rollback action;
+- **Migration pauses:** restore both source and target health, then use Ahova's resume or rollback action;
   do not manually copy partial provider folders.
 
 Download safe diagnostics from the local wizard when needed. They intentionally omit endpoints, paths,

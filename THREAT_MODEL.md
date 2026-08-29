@@ -10,7 +10,7 @@
 
 ## Trust boundaries
 
-The Alven control plane is responsible for current User, Owner, Membership, and Workspace authorization.
+The Ahova control plane is responsible for current User, Owner, Membership, and Workspace authorization.
 Bridge is user-operated and may be stale, misconfigured, offline, or compromised. Ollama, LM Studio,
 models, mounted storage, WebDAV/S3 services, and model output are untrusted dependencies.
 
@@ -22,7 +22,7 @@ models, mounted storage, WebDAV/S3 services, and model output are untrusted depe
 - independently enabled AI and storage capabilities;
 - bounded leased jobs with idempotent completion and replay rejection;
 - minimum job context and no unrestricted Workspace export;
-- typed result validation in the Alven control plane;
+- typed result validation in the Ahova control plane;
 - mounted-root allowlist and traversal/symlink escape rejection for storage;
 - normalized relative object keys, configured-prefix confinement, bounded payloads, authenticated
   requests, and no credential-bearing URLs for WebDAV/S3 storage;
@@ -44,5 +44,5 @@ models, mounted storage, WebDAV/S3 services, and model output are untrusted depe
 
 ## Explicit non-goals
 
-Bridge is not a self-hosted Alven backend, VPN, remote shell, generic webhook runner, arbitrary agent,
+Bridge is not a self-hosted Ahova backend, VPN, remote shell, generic webhook runner, arbitrary agent,
 home-automation controller, or general chat server.

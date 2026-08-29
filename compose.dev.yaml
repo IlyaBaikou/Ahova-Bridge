@@ -1,4 +1,4 @@
 services:
   bridge:
     build: .
-    image: alven-bridge:development
+    image: ahova-bridge:development

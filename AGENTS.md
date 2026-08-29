@@ -1,6 +1,6 @@
 # Repository instructions
 
-Alven Bridge is a security-sensitive, user-operated capability worker.
+Ahova Bridge is a security-sensitive, user-operated capability worker.
 
 - Keep all network connections outbound from Bridge.
 - Never add a production endpoint, secret, token, household payload, or private fixture.

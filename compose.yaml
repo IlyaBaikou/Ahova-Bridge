@@ -1,6 +1,6 @@
 services:
   bridge:
-    image: ${ALVEN_BRIDGE_IMAGE:-ghcr.io/ilyabaikou/alven-bridge:latest}
+    image: ${AHOVA_BRIDGE_IMAGE:-ghcr.io/ilyabaikou/ahova-bridge:latest}
     init: true
     restart: unless-stopped
     ports:
@@ -17,7 +17,7 @@ services:
       Bridge__Storage__MaximumFileBytes: ${BRIDGE_STORAGE_MAXIMUM_FILE_BYTES:-5000000}
       Bridge__ReceiptRetentionDays: ${BRIDGE_RECEIPT_RETENTION_DAYS:-30}
     volumes:
-      - bridge-state:/var/lib/alven-bridge
+      - bridge-state:/var/lib/ahova-bridge
       - type: bind
         source: ${BRIDGE_STORAGE_HOST_PATH:-./family-files}
         target: /data/family-files

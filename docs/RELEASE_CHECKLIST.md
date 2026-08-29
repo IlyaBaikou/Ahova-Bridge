@@ -16,4 +16,4 @@
 - Upgrade from the previous supported minor and rollback to it preserve state.
 - README system requirements, 5 MB preview relay limit, support policy, and security-reporting route are
   current.
-- The Alven website links to the tagged release or repository, not an unpublished local artifact.
+- The Ahova website links to the tagged release or repository, not an unpublished local artifact.

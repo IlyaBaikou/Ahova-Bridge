@@ -1,6 +1,6 @@
 # Operations and recovery
 
-Alven Bridge makes only outbound connections. Do not expose the wizard, local model, or mounted NAS
+Ahova Bridge makes only outbound connections. Do not expose the wizard, local model, or mounted NAS
 service to the public internet as part of an operations workaround.
 
 ## Health model
@@ -10,6 +10,18 @@ service to the public internet as part of an operations workaround.
   enabled capabilities. It is expected to be unavailable during first-time setup.
 - `/api/v1/diagnostics` is loopback-only and content-redacted. Capture it before restart when practical.
 
+## Change the mounted family folder
+
+Do not edit Compose or `.env` by hand for the normal path. From the installation folder run:
+
+```bash
+./ahova-bridge storage /mnt/family/ahova
+```
+
+On Windows use `.\ahova-bridge.ps1 storage "D:\Family\Ahova"`. The helper recreates only the Bridge
+container; it does not copy, move, or delete existing family originals. Return to the local wizard and
+select **Save and test** before switching the active destination in Ahova.
+
 ## Backup
 
 Back up the family storage mount, WebDAV service, or S3 bucket with the storage platform's snapshot or
@@ -18,8 +30,8 @@ back up the small Docker state volume while Bridge is stopped:
 
 ```bash
 docker compose stop bridge
-docker run --rm -v alven-bridge_bridge-state:/state:ro -v "$PWD":/backup alpine \
-  tar -czf /backup/alven-bridge-state.tgz -C /state .
+docker run --rm -v ahova-bridge_bridge-state:/state:ro -v "$PWD":/backup alpine \
+  tar -czf /backup/ahova-bridge-state.tgz -C /state .
 docker compose start bridge
 ```
 
@@ -30,14 +42,14 @@ Do not attach it to support requests.
 
 Restore onto a trusted host with Bridge stopped. Use an empty replacement volume, restore the archive,
 start Bridge, and verify the local wizard and readiness endpoint. Also restore or mount the exact family
-storage volume with its `.alven-bridge-mount-id` marker. A missing or changed marker must fail closed.
+storage volume with its `.ahova-bridge-mount-id` marker. A missing or changed marker must fail closed.
 
-If Alven reports that the installation was revoked, discard the restored Bridge state and pair a new
+If Ahova reports that the installation was revoked, discard the restored Bridge state and pair a new
 installation. Do not restore an old credential over a newer active installation.
 
 ## Common incidents
 
-- `control-plane-unavailable`: verify outbound HTTPS, system time, DNS, and the configured Alven URL.
+- `control-plane-unavailable`: verify outbound HTTPS, system time, DNS, and the configured Ahova URL.
 - AI unavailable: verify the local endpoint from the Docker host and confirm the exact model is in the
   allowlist. Bridge never falls back to paid managed AI.
 - Storage unavailable: for mounted storage, verify the host mount and identity marker before restarting.
