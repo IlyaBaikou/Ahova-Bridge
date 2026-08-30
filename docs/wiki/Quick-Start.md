@@ -54,6 +54,24 @@ public reverse proxy.
 The pairing code expires after ten minutes and works once. A cancelled or failed pairing does not change
 the family's active storage.
 
+### What the four stages look like
+
+#### Choose capabilities
+
+![Choose Ahova Bridge capabilities](https://raw.githubusercontent.com/IlyaBaikou/Ahova-Bridge/main/docs/assets/bridge-setup.png)
+
+#### Connect and test services
+
+![Connect and test Ahova Bridge services](https://raw.githubusercontent.com/IlyaBaikou/Ahova-Bridge/main/docs/assets/bridge-services.png)
+
+#### Pair with the one-time code
+
+![Pair Ahova Bridge with a family](https://raw.githubusercontent.com/IlyaBaikou/Ahova-Bridge/main/docs/assets/bridge-pairing.png)
+
+#### Verify readiness
+
+![Verified Ahova Bridge installation](https://raw.githubusercontent.com/IlyaBaikou/Ahova-Bridge/main/docs/assets/bridge-ready.png)
+
 ## 4. Verify from the installation folder
 
 ```bash

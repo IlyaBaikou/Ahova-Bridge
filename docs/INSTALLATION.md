@@ -72,6 +72,28 @@ be changed at the top of the page.
 Cancelling or failing step 3 does not select Bridge as the family's storage. One Bridge installation is
 paired with one Ahova Family Workspace. Revoke or unpair it before moving the state to another family.
 
+### Visual walkthrough
+
+#### 1. Choose only the capabilities you need
+
+![Choose Ahova Bridge capabilities](assets/bridge-setup.png)
+
+#### 2. Connect and test each enabled service
+
+The ordinary controls stay prominent. Addresses and operational limits remain under **Advanced**.
+
+![Connect and test Ahova Bridge services](assets/bridge-services.png)
+
+#### 3. Paste the one-time code from Ahova
+
+![Pair Ahova Bridge with a family](assets/bridge-pairing.png)
+
+#### 4. Confirm the complete ready state
+
+The last page separately confirms pairing, Ahova contact, and every enabled capability.
+
+![Verified Ahova Bridge installation](assets/bridge-ready.png)
+
 ## Verify from the command line
 
 From the installation folder, run:
