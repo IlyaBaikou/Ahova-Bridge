@@ -95,7 +95,7 @@ want a specific release or preview branch.
    into the wizard.
 5. Wait until the final page shows **Ready** for Ahova contact and every enabled capability.
 
-The wizard follows the browser language and supports English, Russian, and Belarusian. The screenshots
+The wizard follows the browser language and supports English, Russian, Belarusian, and Simplified Chinese. The screenshots
 in the installation guide show every stage and the exact healthy state to expect.
 
 The pairing code expires after ten minutes and works once. A cancelled or failed pairing does not change

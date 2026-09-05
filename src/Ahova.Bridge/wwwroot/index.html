@@ -7,13 +7,14 @@
   <title>Ahova Bridge</title>
   <style>
     :root{--ink:#17362f;--muted:#66766f;--paper:#f7f3ea;--card:#fffdf8;--moss:#dfe8dc;--line:#d7ddd4;--accent:#285d4c;--accent2:#9bbca9;--danger:#9a493d;--warning:#9b712a;--shadow:0 22px 60px rgba(45,61,53,.08)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 4%,#dfe8dc 0,transparent 30%),linear-gradient(150deg,#fbf7ef,#f0ece3);color:var(--ink);font:15px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}.shell{width:min(940px,calc(100% - 32px));margin:0 auto;padding:30px 0 70px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px;font-weight:760;letter-spacing:.015em}.mark{width:44px;height:44px;display:block;filter:drop-shadow(0 9px 18px rgba(40,93,76,.12))}.language{width:auto;min-height:42px;margin:0;padding:9px 34px 9px 13px;background-color:rgba(255,253,248,.82)}.hero{padding:42px 0 30px}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,253,248,.72);color:var(--muted);font-size:12px;font-weight:750}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:#73917e;box-shadow:0 0 0 4px rgba(115,145,126,.13)}h1{font-family:Iowan Old Style,Palatino,Georgia,serif;font-size:clamp(42px,7vw,68px);font-weight:500;letter-spacing:-.045em;line-height:1.02;margin:17px 0 14px;max-width:760px}.lead{font-size:18px;color:var(--muted);max-width:700px;margin:0}.status{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}.pill,.card,.choice{background:rgba(255,253,248,.9);border:1px solid var(--line);box-shadow:var(--shadow)}.pill{position:relative;overflow:hidden;border-radius:18px;padding:15px 17px}.pill:after{content:"";position:absolute;right:-18px;top:-22px;width:58px;height:58px;border-radius:50%;background:rgba(223,232,220,.65)}.pill small,label small,.label{display:block;color:var(--muted);font-size:11px;font-weight:760;letter-spacing:.09em;text-transform:uppercase}.pill strong{display:block;margin-top:4px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:26px 0 12px}.step-button{min-width:0;padding:0;border:0;background:transparent;color:var(--muted);box-shadow:none;text-align:left}.step-bar{display:block;height:5px;border-radius:9px;background:#d8ded6;margin-bottom:7px}.step-name{font-size:11px;font-weight:750;white-space:nowrap}.step-button.active,.step-button.done{color:var(--accent)}.step-button.active .step-bar,.step-button.done .step-bar{background:var(--accent)}.card{border-radius:28px;padding:30px;margin-top:16px}.card h2{font-family:Iowan Old Style,Palatino,Georgia,serif;font-size:30px;font-weight:500;margin:0}.card>p{color:var(--muted);margin:7px 0 24px}.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{display:block;border-radius:22px;padding:22px;cursor:pointer;box-shadow:none;transition:.18s ease}.choice:has(input:checked){border-color:var(--accent);background:#f1f6ef;box-shadow:0 0 0 2px rgba(40,93,76,.08)}.choice input{position:absolute;opacity:0}.choice strong{display:block;font-size:18px;margin:10px 0 4px}.choice span{color:var(--muted)}.choice-icon{display:grid!important;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--moss);font-size:20px;color:var(--accent)!important}.section{padding:22px 0;border-top:1px solid var(--line)}.section:first-of-type{border-top:0;padding-top:0}.section-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:15px}.section-head h3{margin:0;font-size:19px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.field{display:block}input[type=text],input[type=url],input[type=number],input[type=password],select{width:100%;margin-top:7px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;color:var(--ink);font:inherit;outline:none;min-height:49px}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(40,93,76,.1)}.toggle{display:flex;align-items:center;gap:10px;min-height:48px;padding:10px 0}.toggle input{width:19px;height:19px;accent-color:var(--accent)}.mode-toggle{margin-left:auto}.actions{display:flex;gap:11px;align-items:center;margin-top:24px;flex-wrap:wrap}button{border:0;border-radius:999px;padding:13px 20px;font:750 14px/1 inherit;cursor:pointer;background:var(--accent);color:#fff;box-shadow:0 7px 18px rgba(40,93,76,.14)}button.secondary{background:var(--moss);color:var(--ink);box-shadow:none}button.ghost{background:transparent;color:var(--muted);box-shadow:none;border:1px solid var(--line)}button.danger{color:var(--danger)}button:disabled{opacity:.5;cursor:wait}.note{font-size:13px;color:var(--muted)}.notice{border-radius:17px;background:#f0f3ed;border:1px solid var(--line);padding:14px 16px;color:var(--muted);margin:16px 0}.notice code{display:block;margin-top:8px;padding:10px 12px;background:rgba(255,255,255,.7);border-radius:10px;color:var(--ink);overflow-wrap:anywhere;user-select:all}.hidden{display:none!important}.feedback{min-height:22px;margin-top:14px;font-weight:650}.error{color:var(--danger)}.ok{color:var(--accent)}.checks{display:grid;gap:10px;margin-top:20px}.check{display:grid;grid-template-columns:12px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:17px;padding:15px;background:#fff}.check-dot{width:10px;height:10px;border-radius:50%;background:#a1aaa4;margin-top:6px}.check[data-state=healthy] .check-dot{background:#4d866b}.check[data-state=unavailable] .check-dot,.check[data-state=required] .check-dot{background:var(--danger)}.check[data-state=checking] .check-dot{background:var(--warning)}.check strong,.check span{display:block}.check span{color:var(--muted);font-size:13px;margin-top:2px}.ready-mark{width:76px;height:76px;border-radius:26px;display:grid;place-items:center;background:var(--moss);font-size:36px;margin-bottom:18px}.manage{border-top:1px solid var(--line);margin-top:26px;padding-top:22px}.manage h3{margin:0 0 5px}.manage p{color:var(--muted);margin:0}.provider-fields{display:contents}.advanced-box{padding:18px;border:1px dashed var(--line);border-radius:18px;background:rgba(247,243,234,.55);margin-top:16px}.discovery{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:15px 0}.discovery .note{flex:1;min-width:220px}.test-results{margin-top:18px;padding:17px;border-radius:18px;border:1px solid var(--line);background:#f6f8f3}.test-results h3{margin:0 0 5px}.test-results p{margin:0;color:var(--muted)}footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}@media(max-width:680px){.shell{padding-top:18px}.hero{padding-top:30px}.status,.grid,.choices{grid-template-columns:1fr}.card{padding:22px}.steps{margin-top:18px}.step-name{font-size:9px;white-space:normal}.actions button{width:100%}.section-head{display:block}.mode-toggle{margin:10px 0 0}.language{max-width:130px}.discovery button{width:100%}}
+    html:lang(zh-Hans) :is(h1,.card h2){font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:600;letter-spacing:0;line-height:1.2}
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="topbar">
       <div class="brand"><img class="mark" src="assets/ahova-logo.png" width="44" height="44" alt=""><span>Ahova Bridge</span></div>
-      <select id="language" class="language" data-i18n-aria="language" aria-label="Language"><option value="en">English</option><option value="ru">Русский</option><option value="be">Беларуская</option></select>
+      <select id="language" class="language" data-i18n-aria="language" aria-label="Language"><option value="en">English</option><option value="ru">Русский</option><option value="be">Беларуская</option><option value="zh-Hans">简体中文</option></select>
     </div>
     <header class="hero">
       <div class="eyebrow" data-i18n="eyebrow">Private by architecture</div>
@@ -525,9 +526,145 @@
 }
 };
     let nonce='',currentStep=1,currentLanguage='en';
+    translations['zh-Hans'] = {
+  "eyebrow": "从架构上保护隐私",
+  "heroTitle": "你的家，始终由你掌控。",
+  "heroLead": "连接私有 AI 和家庭自有存储，无需向外网开放家庭网络。",
+  "statusLabel": "Bridge 状态",
+  "pairingStatus": "配对",
+  "aiStatusLabel": "私有 AI",
+  "storageStatusLabel": "家庭存储",
+  "progressLabel": "设置进度",
+  "stepCapabilities": "1 · 功能",
+  "stepServices": "2 · 服务",
+  "stepPair": "3 · 配对",
+  "stepReady": "4 · 就绪",
+  "capabilitiesTitle": "希望此 Bridge 提供哪些功能？",
+  "capabilitiesLead": "可选一项或两项，之后仍可修改。",
+  "useAi": "使用我的私有 AI",
+  "useAiLead": "用家中的模型处理受支持的 Ahova 请求。",
+  "useStorage": "使用我的家庭存储",
+  "useStorageLead": "将家庭原件保存在文件夹、NAS、WebDAV 或 S3 中。",
+  "continue": "继续",
+  "servicesTitle": "连接你的服务",
+  "servicesLead": "与家庭配对前，Bridge 会先检查各项服务。",
+  "advanced": "高级设置",
+  "privateAi": "私有 AI",
+  "privateAiLead": "可查找此电脑上运行的 Ollama 或 LM Studio。",
+  "aiType": "AI 应用",
+  "detectAuto": "自动查找",
+  "model": "模型",
+  "findModelFirst": "请先查找模型",
+  "findAi": "查找本地 AI",
+  "findAiHint": "启动 Ollama 或 LM Studio 服务器，然后点击此按钮。",
+  "aiEndpoint": "本地 AI 服务地址",
+  "allowedModels": "允许使用的模型",
+  "familyStorage": "家庭存储",
+  "familyStorageLead": "选择 Bridge 保存新家庭原件的位置。",
+  "storageType": "存储类型",
+  "mountedOption": "本机或 NAS 上的文件夹",
+  "readOnly": "只读",
+  "storageEndpoint": "存储服务地址",
+  "username": "用户名",
+  "password": "密码或应用专用密码",
+  "keepPassword": "留空以保留已保存的密码",
+  "bucket": "存储桶",
+  "prefix": "文件夹前缀",
+  "accessKey": "访问密钥",
+  "keepKey": "留空以保留已保存的访问密钥",
+  "secretKey": "秘密访问密钥",
+  "keepSecret": "留空以保留已保存的秘密访问密钥",
+  "region": "区域",
+  "mountedLead": "Bridge 使用安装时选定的家庭文件夹。如需更换，请在 Bridge 安装文件夹中运行：",
+  "ahovaService": "Ahova 服务",
+  "fileLimit": "文件传输上限（字节）",
+  "receiptRetention": "处理记录保留时间（天）",
+  "saveTest": "保存并测试",
+  "continuePairing": "继续配对",
+  "back": "返回",
+  "pairTitle": "配对此电脑",
+  "pairLead": "在 Ahova 中打开<strong>更多 → 文件与 Smart Actions → Ahova Bridge</strong>，生成一次性配对码并粘贴到这里。",
+  "pairCode": "一次性配对码",
+  "pairButton": "与 Ahova 配对",
+  "checkingBridge": "正在检查 Bridge…",
+  "checkingLead": "所有已启用服务通过检查后，Ahova 才会向此处发送请求。",
+  "checkAgain": "再次检查",
+  "changeSettings": "修改设置",
+  "diagnostics": "下载已隐去敏感内容的诊断包",
+  "manageTitle": "管理此安装",
+  "manageLead": "将此 Bridge 转移到其他家庭或电脑前，请先解除配对。",
+  "unpair": "解除此电脑的配对",
+  "footer": "MIT 许可开源软件 · 仅主动向外连接 · 诊断隐去敏感内容",
+  "chooseCapability": "请选择私有 AI、家庭存储，或同时选择两项。",
+  "checking": "检查中…",
+  "paired": "已配对",
+  "notPaired": "未配对",
+  "ready": "就绪",
+  "off": "已关闭",
+  "attention": "需要处理",
+  "readOnlyReady": "就绪 · 只读",
+  "readWriteReady": "就绪 · 可读写",
+  "finding": "正在查找本地 AI…",
+  "noAi": "未找到本地 AI。请启动 Ollama 或 LM Studio 服务器后重试。",
+  "foundModels": n => `找到 ${n} 个模型，请在下方选择。`,
+  "foundNoModels": "AI 服务器已响应，但未找到已加载的模型。",
+  "configurationReady": "服务已就绪。",
+  "configurationReadyLead": "已启用服务均已成功响应，可继续配对此 Bridge。",
+  "configurationAttention": "一项服务需要处理。",
+  "configurationAttentionLead": "请查看上方提示或打开高级设置，然后再次测试。",
+  "saved": "设置已保存。",
+  "pairingUnavailable": "Ahova 无法与此电脑配对。请检查配对码和网络连接。",
+  "pairingRequired": "请输入 Ahova 生成的一次性配对码。",
+  "configurationInvalid": "请检查标出的服务设置后重试。",
+  "requestFailed": "Bridge 无法完成此请求，请重试。",
+  "pairedWith": name => `已与 ${name} 配对。`,
+  "readyTitle": "Bridge 已就绪。",
+  "readyLead": "你可以关闭此页面，Bridge 会继续在后台运行。",
+  "needsTitle": "还有几项内容需要处理。",
+  "needsLead": "请按下方提示操作，然后再次检查。",
+  "checkFailed": "无法完成检查。",
+  "confirmUnpair": "解除此 Bridge 的配对？Ahova 将停止向它发送请求。",
+  "confirmLocal": "无法连接 Ahova。仍要移除本地凭据吗？服务恢复后，请在 Ahova 中撤销此 Bridge。",
+  "unpaired": "Bridge 已解除配对。",
+  "downloadFailed": "无法生成诊断包，请重试。",
+  "language": "语言",
+  "compatibleAi": "LM Studio／兼容 OpenAI 的服务",
+  "checkControlHealthy": "Ahova 服务地址已设置。",
+  "checkControlRequired": "请输入 Ahova 服务地址。",
+  "checkControlAction": "请使用 Ahova 提供的地址。",
+  "checkPairHealthy": "Bridge 已连接到你的家庭。",
+  "checkPairRequired": "Bridge 尚未连接到家庭。",
+  "checkPairAction": "请在 Ahova 中生成一次性配对码，并在下一步输入。",
+  "checkAiHealthy": "私有 AI 正常响应。",
+  "checkAiDisabled": "私有 AI 已关闭。",
+  "checkAiUnavailable": "私有 AI 未响应。",
+  "checkAiAction": "请启动模型服务器，并检查地址和所选模型。",
+  "checkStorageHealthy": "家庭存储正常响应。",
+  "checkStorageDisabled": "家庭存储已关闭。",
+  "checkStorageUnavailable": "家庭存储未响应。",
+  "checkStorageAction": "请检查连接的文件夹或存储地址、登录信息和写入权限。",
+  "checkWorkerHealthy": "Bridge 可以接收 Ahova 请求。",
+  "checkWorkerUnavailable": "Bridge 无法连接 Ahova。",
+  "checkWorkerAction": "请检查网络连接，以及 Bridge 在 Ahova 中是否仍有访问权限。",
+  "checkWorkerChecking": "等待首次连接。",
+  "checkWorkerWaitAction": "请等待几秒后再次检查。",
+  "checkWorkerWaiting": "配对后，Bridge 将开始接收请求。",
+  "checkUnknown": "此检查项目需要处理。",
+  "configRetention": "处理记录保留时间请选择 1 至 90 天。",
+  "configService": "Ahova 须使用 HTTPS 地址。只有本地测试服务器允许使用 HTTP。",
+  "configAiAddress": "请输入 AI 服务器完整的 HTTP 或 HTTPS 地址。",
+  "configFolder": "请选择已连接家庭文件夹的完整路径。",
+  "configStorageAddress": "请输入存储服务完整的 HTTP 或 HTTPS 地址。",
+  "configWebdav": "请输入 WebDAV 用户名和密码。",
+  "configS3": "请输入 S3 存储桶名称、访问密钥和秘密访问密钥。",
+  "configStorageType": "请选择文件夹、WebDAV 或 S3 存储。",
+  "configFileLimit": "请选择 1 至 5 MB 的文件上限。",
+  "networkFailed": "无法连接 Bridge。请确认它正在运行后重试。"
+};
+    function resolveLanguage(value){const tag=String(value??'').toLowerCase().replaceAll('_','-');if(tag==='zh'||tag==='zh-cn'||tag==='zh-sg'||/^zh-hans(?:-|$)/.test(tag))return 'zh-Hans';const base=tag.split('-')[0];return ['en','ru','be'].includes(base)?base:'en'}
     const $=id=>document.getElementById(id),t=(key,...args)=>{const value=translations[currentLanguage][key]??translations.en[key]??key;return typeof value==='function'?value(...args):value};
     const message=(value,error=false)=>{$('message').textContent=value;$('message').className=`feedback ${error?'error':'ok'}`};
-    function applyLanguage(language){currentLanguage=translations[language]?language:'en';document.documentElement.lang=currentLanguage;$('language').value=currentLanguage;localStorage.setItem('ahovaBridgeLanguage',currentLanguage);document.querySelectorAll('[data-i18n]').forEach(node=>node.textContent=t(node.dataset.i18n));document.querySelectorAll('[data-i18n-html]').forEach(node=>node.innerHTML=t(node.dataset.i18nHtml));document.querySelectorAll('[data-i18n-placeholder]').forEach(node=>node.placeholder=t(node.dataset.i18nPlaceholder));document.querySelectorAll('[data-i18n-aria]').forEach(node=>node.setAttribute('aria-label',t(node.dataset.i18nAria)));const selected=$('modelSelect').value,models=[...$('modelSelect').options].map(option=>option.value).filter(Boolean);selectModels(models,selected);refreshStatusText();if(window.lastAssessment)renderAssessment(window.lastAssessment);}
+    function applyLanguage(language){currentLanguage=resolveLanguage(language);document.documentElement.lang=currentLanguage;$('language').value=currentLanguage;localStorage.setItem('ahovaBridgeLanguage',currentLanguage);document.querySelectorAll('[data-i18n]').forEach(node=>node.textContent=t(node.dataset.i18n));document.querySelectorAll('[data-i18n-html]').forEach(node=>node.innerHTML=t(node.dataset.i18nHtml));document.querySelectorAll('[data-i18n-placeholder]').forEach(node=>node.placeholder=t(node.dataset.i18nPlaceholder));document.querySelectorAll('[data-i18n-aria]').forEach(node=>node.setAttribute('aria-label',t(node.dataset.i18nAria)));const selected=$('modelSelect').value,models=[...$('modelSelect').options].map(option=>option.value).filter(Boolean);selectModels(models,selected);refreshStatusText();if(window.lastAssessment)renderAssessment(window.lastAssessment);}
     async function json(url,options={}){let response;try{response=await fetch(url,options)}catch{throw new Error(t('networkFailed'))}const body=response.status===204?null:await response.json().catch(()=>null);if(!response.ok){const error=new Error(friendlyError(body?.code));error.code=body?.code;error.details=body?.errors;throw error}return body}
     function friendlyError(code){return {"pairing-code-required":t('pairingRequired'),"pairing-unavailable":t('pairingUnavailable'),"configuration-invalid":t('configurationInvalid'),"already-paired":t('paired'),"unpair-before-changing-control-plane":t('configurationInvalid')}[code]||t('requestFailed')}
     function step(next){currentStep=next;document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',Number(x.dataset.panel)===next));document.querySelectorAll('.step-button').forEach(x=>{const value=Number(x.dataset.step);x.classList.toggle('active',value===next);x.classList.toggle('done',value<next)});window.scrollTo({top:Math.max(0,document.querySelector('.steps').offsetTop-20),behavior:'smooth'});if(next===4)verify()}
@@ -557,7 +694,7 @@
     $('verify').addEventListener('click',verify);$('configureAgain').addEventListener('click',()=>step(2));
     $('downloadDiagnostics').addEventListener('click',async()=>{try{const value=await json('/api/v1/diagnostics');const blob=new Blob([JSON.stringify(value,null,2)],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=`ahova-bridge-diagnostics-${new Date().toISOString().slice(0,10)}.json`;link.click();URL.revokeObjectURL(link.href)}catch{$('readyLead').textContent=t('downloadFailed')}});
     $('unpair').addEventListener('click',async()=>{if(!confirm(t('confirmUnpair')))return;try{await json('/api/v1/pair',{method:'DELETE',headers:{'X-Ahova-Setup-Nonce':nonce}});message(t('unpaired'));await load();step(3)}catch(error){if(error.code==='remote-revocation-unconfirmed'&&confirm(t('confirmLocal'))){await json('/api/v1/pair?forceLocal=true',{method:'DELETE',headers:{'X-Ahova-Setup-Nonce':nonce}});await load();step(3)}else $('readyLead').textContent=error.message}});
-    const preferred=localStorage.getItem('ahovaBridgeLanguage')||navigator.language?.slice(0,2)||'en';applyLanguage(preferred);if(navigator.userAgent.includes('Windows'))document.querySelector('#mountedNote code').textContent=document.querySelector('#mountedNote code').dataset.windows;load().catch(error=>{document.querySelector('.lead').textContent=error.message});
+    const preferred=localStorage.getItem('ahovaBridgeLanguage')||navigator.language||'en';applyLanguage(preferred);if(navigator.userAgent.includes('Windows'))document.querySelector('#mountedNote code').textContent=document.querySelector('#mountedNote code').dataset.windows;load().catch(error=>{document.querySelector('.lead').textContent=error.message});
   </script>
 </body>
 </html>
