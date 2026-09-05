@@ -1,18 +1,21 @@
-# Draft translations
+# Bridge localization
 
-`drafts/zh-Hans.mjs` contains the complete 133-entry Simplified Chinese candidate for
-`src/Ahova.Bridge/wwwroot/index.html`. It is outside the served web root and is not imported by the
-runtime. English, Russian and Belarusian remain the supported setup languages.
+The setup interface supports English, Russian, Belarusian and Simplified Chinese (`zh-Hans`).
+Its 133-entry catalogues live in `src/Ahova.Bridge/wwwroot/index.html`; dynamic values,
+setup checks and configuration errors are verified by `node scripts/verify-localization.mjs`.
 
-The draft preserves the dynamic `foundModels(n)` and `pairedWith(name)` arguments, setup status keys,
-HTML emphasis in the pairing guide, protocol names and numeric limits. It was checked against the
-current English key set, including counts 0, 1, 2, 5, 11 and 21.
+The Chinese pilot was prepared on 5 September 2026 and integrated on 6 September at the
+owner’s explicit request to enable all surfaces and publish. Native-speaker review remains
+pending; runtime availability does not claim that review has happened. The former standalone
+draft was moved into the served catalogue to avoid duplicate translation sources.
 
-Native-speaker and actual layout review are pending. Integrate the reviewed catalogue into the existing
-translation map and language selector alongside the app, website and Server release; do not advertise
-Chinese solely because this file exists. The full pilot report is in the HomeOS companion repository:
-`localization/audit/chinese-draft-2026-09-05.md`.
+Chinese browser tags `zh`, `zh-CN`, `zh-SG` and `zh-Hans` resolve to Simplified Chinese.
+Traditional Chinese preferences fall back to English; the user can select Simplified Chinese.
+The chosen language persists. Provider names, commands and family-authored text are preserved.
+Headings use platform fonts for Chinese because the editorial faces lack Han coverage.
 
-Verification on 5 September 2026: formatting, existing EN/RU/BE localization checks, 25 .NET tests,
-draft catalogue parity/function checks and Docker build passed. The Mac was locked when native UI
-review was attempted, so no Chinese visual acceptance is claimed.
+Validation: catalogue/setup-error checks, .NET formatting, 25 tests and Docker build passed.
+The wizard’s Chinese language selection and first step were visually inspected in the browser.
+This is not clean-machine pairing or model/storage interoperability evidence.
+
+The companion HomeOS report is `localization/audit/chinese-draft-2026-09-05.md`.
