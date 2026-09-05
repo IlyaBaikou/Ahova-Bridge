@@ -49,4 +49,11 @@ public sealed record BridgeRuntimeStatus(
     string? LastSafeFailure,
     string AiHealth,
     string StorageHealth,
-    DateTimeOffset? LastControlPlaneContactAt);
+    DateTimeOffset? LastControlPlaneContactAt,
+    bool ControlPlaneConnected)
+{
+    public bool Ready => Paired && ControlPlaneConfigured && ControlPlaneConnected
+        && Capabilities.Count > 0
+        && AiHealth is "healthy" or "disabled"
+        && StorageHealth is "healthy" or "disabled";
+}

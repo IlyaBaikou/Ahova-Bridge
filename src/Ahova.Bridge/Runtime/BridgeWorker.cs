@@ -33,9 +33,9 @@ internal sealed class BridgeWorker(
                 break;
             }
             catch (Exception exception) when (exception is HttpRequestException
-                or InvalidOperationException or InvalidDataException)
+                or InvalidOperationException or InvalidDataException or OperationCanceledException)
             {
-                runtimeState.ReportFailure("control-plane-unavailable");
+                runtimeState.ReportControlPlaneFailure();
                 ControlPlaneUnavailable(logger, exception);
             }
             await Task.Delay(TimeSpan.FromSeconds(

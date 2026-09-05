@@ -8,6 +8,8 @@ using Ahova.Bridge.Configuration;
 using Ahova.Bridge.ControlPlane;
 using Ahova.Bridge.Jobs;
 using Ahova.Bridge.Security;
+using Ahova.Bridge.Runtime;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +39,51 @@ public sealed class BridgeBoundaryTests : IAsyncLifetime
         Assert.Empty(status.Capabilities);
         using var readiness = await client.GetAsync("/health/ready");
         Assert.Equal(HttpStatusCode.ServiceUnavailable, readiness.StatusCode);
+    }
+
+    [Fact]
+    public async Task ReadinessAndSetupRequireAWorkingControlPlaneAndRecoverAfterReconnect()
+    {
+        var storageRoot = Path.Combine(stateDirectory, "files");
+        Directory.CreateDirectory(storageRoot);
+        await using var baseFactory = Factory(services => services.RemoveAll<IHostedService>(),
+            storageRoot: storageRoot);
+        await using var factory = baseFactory.WithWebHostBuilder(builder =>
+            builder.ConfigureAppConfiguration((_, config) => config.AddInMemoryCollection(
+                new Dictionary<string, string?>
+                {
+                    ["Bridge:ControlPlaneBaseUrl"] = "http://127.0.0.1:5097",
+                })));
+        using var client = factory.CreateClient();
+        var session = await client.GetFromJsonAsync<JsonElement>("/api/v1/setup/session");
+        var store = factory.Services.GetRequiredService<IInstallationCredentialStore>();
+        await store.SaveAsync((await store.CreateCandidateAsync(CancellationToken.None)) with
+        {
+            WorkspaceId = Guid.NewGuid(),
+        }, CancellationToken.None);
+        var state = factory.Services.GetRequiredService<BridgeRuntimeState>();
+        state.ReportControlPlaneContact(DateTimeOffset.UtcNow);
+        using var initial = await client.GetAsync("/health/ready");
+        Assert.Equal(HttpStatusCode.OK, initial.StatusCode);
+        state.ReportControlPlaneFailure();
+        // A job result must not accidentally clear a connection failure.
+        state.ReportHealthy();
+        using var readiness = await client.GetAsync("/health/ready");
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/v1/setup/verify");
+        request.Headers.Add("X-Ahova-Setup-Nonce", session.GetProperty("nonce").GetString());
+        using var response = await client.SendAsync(request);
+        var assessment = await response.Content.ReadFromJsonAsync<BridgeSetupAssessment>();
+
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, readiness.StatusCode);
+        Assert.NotNull(assessment);
+        Assert.False(assessment.Ready);
+        Assert.Contains(assessment.Checks, check => check.Id == "worker" && check.State == "unavailable");
+        Assert.False((await state.SnapshotAsync(CancellationToken.None)).ControlPlaneConnected);
+
+        state.ReportControlPlaneContact(DateTimeOffset.UtcNow);
+        state.ReportFailure("job-rejected");
+        using var recovered = await client.GetAsync("/health/ready");
+        Assert.Equal(HttpStatusCode.OK, recovered.StatusCode);
     }
 
     [Fact]
