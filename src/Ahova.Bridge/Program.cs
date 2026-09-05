@@ -55,11 +55,7 @@ app.MapGet("/health/ready", async (BridgeRuntimeState state,
     CancellationToken cancellationToken) =>
 {
     var status = await state.SnapshotAsync(cancellationToken);
-    var capabilityReady = status.Capabilities.Count > 0
-        && status.AiHealth is "healthy" or "disabled"
-        && status.StorageHealth is "healthy" or "disabled";
-    return status.Paired && status.ControlPlaneConfigured && capabilityReady
-        && status.LastControlPlaneContactAt is not null
+    return status.Ready
         ? Results.Ok(new { status = "ready" })
         : Results.Json(new { status = "not-ready" }, statusCode:
             StatusCodes.Status503ServiceUnavailable);
@@ -105,18 +101,16 @@ app.MapPost("/api/v1/setup/verify", async (HttpContext httpContext,
         _ => new("storage", "unavailable", "Family storage could not be reached.",
             "Check the mount, endpoint, credentials, and write permission."),
     });
-    checks.Add(status.LastControlPlaneContactAt is not null
-        ? new("worker", "healthy", "The worker has contacted Ahova.")
+    checks.Add(status.ControlPlaneConnected
+        ? new("worker", "healthy", "The worker is connected to Ahova.")
+        : status.LastControlPlaneContactAt is not null
+        ? new("worker", "unavailable", "The worker cannot connect to Ahova.",
+            "Check the connection and confirm that this Bridge still has access in Ahova.")
         : new("worker", status.Paired ? "checking" : "waiting",
             status.Paired ? "Waiting for the first worker heartbeat."
                 : "The worker starts after pairing.",
             status.Paired ? "Keep this page open for a few seconds and check again." : null));
-    var ready = status.Paired && status.ControlPlaneConfigured
-        && status.LastControlPlaneContactAt is not null
-        && status.AiHealth is "healthy" or "disabled"
-        && status.StorageHealth is "healthy" or "disabled"
-        && status.Capabilities.Count > 0;
-    return Results.Ok(new BridgeSetupAssessment(ready, checks));
+    return Results.Ok(new BridgeSetupAssessment(status.Ready, checks));
 });
 app.MapGet("/api/v1/diagnostics", async (BridgeDiagnosticsService diagnostics,
     CancellationToken cancellationToken) =>

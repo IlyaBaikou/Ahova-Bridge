@@ -15,6 +15,7 @@ public sealed class BridgeRuntimeState(
 {
     private string? lastSafeFailure;
     private long lastControlPlaneContactUnixMilliseconds;
+    private int controlPlaneConnected;
 
     public IReadOnlyList<string> Capabilities
     {
@@ -45,9 +46,18 @@ public sealed class BridgeRuntimeState(
 
     public void ReportHealthy() => Volatile.Write(ref lastSafeFailure, null);
 
-    public void ReportControlPlaneContact(DateTimeOffset contactedAt) =>
+    public void ReportControlPlaneFailure()
+    {
+        Volatile.Write(ref controlPlaneConnected, 0);
+        ReportFailure("control-plane-unavailable");
+    }
+
+    public void ReportControlPlaneContact(DateTimeOffset contactedAt)
+    {
         Interlocked.Exchange(ref lastControlPlaneContactUnixMilliseconds,
             contactedAt.ToUnixTimeMilliseconds());
+        Volatile.Write(ref controlPlaneConnected, 1);
+    }
 
     public async Task<BridgeRuntimeStatus> SnapshotAsync(CancellationToken cancellationToken)
     {
@@ -67,6 +77,7 @@ public sealed class BridgeRuntimeState(
             Volatile.Read(ref lastSafeFailure),
             aiHealth,
             storageHealth,
-            lastContact == 0 ? null : DateTimeOffset.FromUnixTimeMilliseconds(lastContact));
+            lastContact == 0 ? null : DateTimeOffset.FromUnixTimeMilliseconds(lastContact),
+            Volatile.Read(ref controlPlaneConnected) == 1);
     }
 }
