@@ -6,8 +6,13 @@ service to the public internet as part of an operations workaround.
 ## Health model
 
 - `/health/live` proves the process can answer locally. It is suitable for container restart policy.
-- `/health/ready` additionally requires pairing, a successful control-plane contact, and healthy
-  enabled capabilities. It is expected to be unavailable during first-time setup.
+- `/health/ready` additionally requires pairing, a working control-plane connection, and healthy
+  enabled capabilities. It is unavailable during first-time setup and after the worker observes a
+  connection failure, including revoked access. `/api/v1/setup/verify` uses the same readiness rule.
+  `lastControlPlaneContactAt` is historical evidence, not proof of a current connection;
+  `controlPlaneConnected` is restored only by a successful worker request. A rejected local job
+  does not itself disconnect the control plane. Readiness is observed at worker requests, so a
+  revocation is reflected after the next request, not at the instant the owner revokes access.
 - `/api/v1/diagnostics` is loopback-only and content-redacted. Capture it before restart when practical.
 
 ## Change the mounted family folder
