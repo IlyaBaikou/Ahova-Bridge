@@ -19,3 +19,21 @@ The wizard’s Chinese language selection and first step were visually inspected
 This is not clean-machine pairing or model/storage interoperability evidence.
 
 The companion HomeOS report is `localization/audit/chinese-draft-2026-09-05.md`.
+
+## European drafts — 6 September 2026
+
+German, Spanish, European Portuguese (`pt-PT`) and French have complete 133-entry drafts in
+`drafts/{de,es,pt,fr}.mjs`. They use the same terminology as the companion mobile app, website and
+Server console. Provider names, commands, credentials, limits, HTML structure and dynamic values
+retain their meaning. Dynamic model counts use CLDR-aware plural rules, including the European
+Portuguese rule for zero.
+
+The existing localization verifier injects these catalogues into its isolated wizard context to
+check every setup state, configuration failure, dynamic name/count and the pairing breadcrumb.
+Drafts are not loaded by the served HTML and are not exposed by language selection or detection.
+No production release of the four new languages is implied.
+
+Catalogue checks, .NET formatting, all 25 tests and the container build passed. Fluent-speaker review,
+full wizard layout review and actual provider/pairing flows in these languages remain pending.
+See the companion HomeOS report `localization/audit/european-locales-2026-09-06.md` for the full
+19,204-entry cross-product scope and release boundary.
