@@ -8,7 +8,7 @@ const context = vm.createContext({ document: { getElementById: () => ({ addEvent
 vm.runInContext(script, context);
 const keys = vm.runInContext('Object.keys(translations.en)', context);
 const references = [...html.matchAll(/data-i18n(?:-html|-aria|-placeholder)?="([^"]+)"/g)].map(match => match[1]);
-for (const locale of ['en', 'ru', 'be']) {
+for (const locale of ['en', 'ru', 'be', 'zh-Hans']) {
   vm.runInContext(`currentLanguage='${locale}'`, context);
   assert.equal(vm.runInContext('Object.keys(translations[currentLanguage]).length', context), keys.length);
   for (const key of new Set([...keys, ...references])) {
@@ -20,7 +20,8 @@ for (const locale of ['en', 'ru', 'be']) {
       const result = vm.runInContext(`checkPresentation(${JSON.stringify({ id, state, summary: 'untranslated-server-message', action: 'untranslated-server-action' })})`, context);
       assert.ok(result.summary);
       assert.doesNotMatch(result.summary + result.action, /untranslated-server/);
-      if (locale !== 'en') assert.match(result.summary, /[А-Яа-яЁёІіЎў]/);
+      if (locale === 'zh-Hans') assert.match(result.summary, /\p{Script=Han}/u);
+      else if (locale !== 'en') assert.match(result.summary, /[А-Яа-яЁёІіЎў]/);
     }
   }
   const unknown = vm.runInContext("checkPresentation({id:'future',state:'new',summary:'private payload'})", context);
@@ -36,4 +37,7 @@ for (const error of editable) {
   context.validationError = error;
   assert.notEqual(vm.runInContext('configurationError(validationError)', context), vm.runInContext("t('configurationInvalid')", context), error);
 }
-console.log(`Bridge localization verified: ${keys.length} keys in EN/RU/BE, setup states and configuration failures.`);
+console.log(`Bridge localization verified: ${keys.length} keys in EN/RU/BE/ZH, setup states and configuration failures.`);
+
+for (const tag of ['zh','zh-CN','zh-SG','zh-Hans','zh-Hans-CN']) assert.equal(vm.runInContext(`resolveLanguage('${tag}')`,context), 'zh-Hans');
+for (const tag of ['zh-TW','zh-Hant','zh-HK']) assert.equal(vm.runInContext(`resolveLanguage('${tag}')`,context), 'en');
