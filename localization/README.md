@@ -1,6 +1,7 @@
 # Bridge localization
 
-The setup interface supports English, Russian, Belarusian and Simplified Chinese (`zh-Hans`).
+The setup interface supports English, Russian, Belarusian, Simplified Chinese (`zh-Hans`), German,
+Spanish, Brazilian Portuguese (`pt-BR`), French, Italian, Turkish, Polish, Ukrainian, Korean and Japanese.
 Its 133-entry catalogues live in `src/Ahova.Bridge/wwwroot/index.html`; dynamic values,
 setup checks and configuration errors are verified by `node scripts/verify-localization.mjs`.
 
@@ -20,20 +21,19 @@ This is not clean-machine pairing or model/storage interoperability evidence.
 
 The companion HomeOS report is `localization/audit/chinese-draft-2026-09-05.md`.
 
-## European drafts — 6 September 2026
+## Global release — 7 September 2026
 
-German, Spanish, European Portuguese (`pt-PT`) and French have complete 133-entry drafts in
-`drafts/{de,es,pt,fr}.mjs`. They use the same terminology as the companion mobile app, website and
-Server console. Provider names, commands, credentials, limits, HTML structure and dynamic values
-retain their meaning. Dynamic model counts use CLDR-aware plural rules, including the European
-Portuguese rule for zero.
+The owner requested all languages across the app, website, Server and Bridge, including replacement
+of European Portuguese with Brazilian Portuguese. The ten added catalogues now live in the served
+HTML. Standalone drafts were removed. Portuguese browser preferences resolve to `pt-BR`.
 
-The existing localization verifier injects these catalogues into its isolated wizard context to
-check every setup state, configuration failure, dynamic name/count and the pairing breadcrumb.
-Drafts are not loaded by the served HTML and are not exposed by language selection or detection.
-No production release of the four new languages is implied.
+The verifier checks all 14 served catalogues through their real runtime helpers: 133 keys, setup
+states, configuration failures, dynamic counts/names, language aliases and the pairing breadcrumb.
+Chinese, Korean and Japanese headings use platform fonts. Provider names, commands, credentials,
+limits and HTML structure retain their meaning.
 
-Catalogue checks, .NET formatting, all 25 tests and the container build passed. Fluent-speaker review,
-full wizard layout review and actual provider/pairing flows in these languages remain pending.
-See the companion HomeOS report `localization/audit/european-locales-2026-09-06.md` for the full
-19,204-entry cross-product scope and release boundary.
+Catalogue checks, .NET formatting, all 25 tests and the container build passed. Independent
+native-speaker review and actual provider/pairing flows in these languages remain pending.
+Machine-assisted drafts received contextual corrections; owner-authorized runtime availability
+does not certify native review. See the companion HomeOS report
+`localization/audit/global-languages-2026-09-07.md` for evidence and release limits.
