@@ -1,7 +1,8 @@
 # Bridge localization
 
 The setup interface supports English, Russian, Belarusian, Simplified Chinese (`zh-Hans`), German,
-Spanish, Brazilian Portuguese (`pt-BR`), French, Italian, Turkish, Polish, Ukrainian, Korean and Japanese.
+Spanish, Brazilian Portuguese (`pt-BR`), French, Italian, Turkish, Polish, Ukrainian, Korean, Japanese
+and Arabic (`ar`, preview).
 Its 133-entry catalogues live in `src/Ahova.Bridge/wwwroot/index.html`; dynamic values,
 setup checks and configuration errors are verified by `node scripts/verify-localization.mjs`.
 
@@ -37,3 +38,17 @@ native-speaker review and actual provider/pairing flows in these languages remai
 Machine-assisted drafts received contextual corrections; owner-authorized runtime availability
 does not certify native review. See the companion HomeOS report
 `localization/audit/global-languages-2026-09-07.md` for evidence and release limits.
+
+## Arabic RTL preview — 7 September 2026
+
+The owner explicitly approved Arabic for family testing while native-speaker review is pending.
+Arabic has a preview label, RTL document direction, logical layout spacing, mirrored navigation
+arrows and platform fonts. Technical inputs remain LTR. All 133 entries have translations and received
+a contextual review; this does not certify native phrasing. Browser preferences such as `ar-SA`
+resolve to `ar`.
+
+All 15 catalogues passed runtime checks; formatting, all 25 tests and the Docker build passed.
+The Arabic initial setup screen was inspected in the running local container. No actual pairing,
+inference, backup or storage migration was performed. This branch has not been released.
+
+The companion HomeOS report is `localization/audit/arabic-rtl-2026-09-07.md`.

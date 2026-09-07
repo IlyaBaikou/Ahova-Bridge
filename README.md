@@ -95,8 +95,8 @@ want a specific release or preview branch.
    into the wizard.
 5. Wait until the final page shows **Ready** for Ahova contact and every enabled capability.
 
-The wizard follows the browser language and supports 14 languages, including Brazilian Portuguese,
-Italian, Turkish, Polish, Ukrainian, Korean and Japanese. See [localization](localization/README.md).
+The wizard follows the browser language and supports 15 languages, including Brazilian Portuguese,
+Italian, Turkish, Polish, Ukrainian, Korean, Japanese and Arabic (preview). See [localization](localization/README.md).
 The screenshots
 in the installation guide show every stage and the exact healthy state to expect.
 
