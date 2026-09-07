@@ -8,7 +8,7 @@ const context = vm.createContext({ document: { getElementById: () => ({ addEvent
 vm.runInContext(script, context);
 const keys = vm.runInContext('Object.keys(translations.en)', context);
 // Verify every served catalogue through the real runtime helpers.
-const addedLocales = ["de", "es", "pt-BR", "fr", "it", "tr", "pl", "uk", "ko", "ja"];
+const addedLocales = ["de", "es", "pt-BR", "fr", "it", "tr", "pl", "uk", "ko", "ja", "ar"];
 for (const locale of addedLocales) {
   const catalogue = vm.runInContext(`translations['${locale}']`, context);
   assert.deepEqual([...Object.keys(catalogue)].sort(), [...keys].sort(), `${locale}: key parity`);
@@ -52,7 +52,7 @@ for (const error of editable) {
   context.validationError = error;
   assert.notEqual(vm.runInContext('configurationError(validationError)', context), vm.runInContext("t('configurationInvalid')", context), error);
 }
-console.log(`Bridge localization verified: ${keys.length} keys in 14 supported locales, setup states and configuration failures.`);
+console.log(`Bridge localization verified: ${keys.length} keys in 15 supported locales, setup states and configuration failures.`);
 
 for (const tag of ['zh','zh-CN','zh-SG','zh-Hans','zh-Hans-CN']) assert.equal(vm.runInContext(`resolveLanguage('${tag}')`,context), 'zh-Hans');
 for (const tag of ['zh-TW','zh-Hant','zh-HK']) assert.equal(vm.runInContext(`resolveLanguage('${tag}')`,context), 'en');
@@ -60,3 +60,5 @@ for (const tag of ['zh-TW','zh-Hant','zh-HK']) assert.equal(vm.runInContext(`res
 
 
 for (const [tag, expected] of [["de", "de"], ["es", "es"], ["pt-BR", "pt-BR"], ["fr", "fr"], ["it", "it"], ["tr", "tr"], ["pl", "pl"], ["uk", "uk"], ["ko", "ko"], ["ja", "ja"], ["pt-PT", "pt-BR"], ["pt", "pt-BR"], ["ja-JP", "ja"], ["ko-KR", "ko"], ["tr_TR", "tr"], ["uk-UA", "uk"]]) assert.equal(vm.runInContext(`resolveLanguage(${JSON.stringify(tag)})`, context), expected);
+
+for (const tag of ["ar", "ar-SA", "ar-EG"]) assert.equal(vm.runInContext(`resolveLanguage(${JSON.stringify(tag)})`, context), "ar");
